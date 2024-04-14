@@ -8,18 +8,21 @@ import { initialState, todoCategoryOptions, todoReducer } from './helpers/newTod
 
 function App() {
   const [state, dispatcher] = useReducer(todoReducer, initialState);
-  const [value,setValue] = useState('')
-  const handleChange = (newValue) => {
-    setValue(newValue);
+
+  const handleChange = (value) => {
+    dispatcher({
+      type: "CHANGE_INPUT",
+      payload: { name: 'todoCategory', value }, // Hardcode the name or pass it from the component
+    });
   };
-  console.log(value)
+  console.log(state)
 
   return (
     <>
       <Select
             name="todoCategory"
             id=""
-            value={value}
+            value={state.todoCategory}
            onValueChange={handleChange}
           >
             <SelectTrigger className="w-[280px]">
@@ -38,3 +41,6 @@ function App() {
 }
 
 export default App
+  // const handleChange = (newValue) => {
+  //   setValue(newValue);
+  // };

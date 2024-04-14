@@ -14,18 +14,14 @@ const initialState = {
     CHANGE_INPUT: "CHANGE_INPUT",
     CHANGE_SELECT: "CHANGE_SELECT",
   };
-  
+
+
   const todoReducer = (state, action) => {
     switch (action.type) {
       case ACTIONS.CHANGE_INPUT:
         return {
           ...state,
           [action.payload.name]: action.payload.value,
-        };
-      case ACTIONS.CHANGE_SELECT: // Add a new case for the select component's action
-        return {
-          ...state,
-          todoCategory: action.payload, // Update the todoCategory value in the state
         };
       default:
         return state;
