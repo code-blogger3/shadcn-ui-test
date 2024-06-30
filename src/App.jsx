@@ -1,64 +1,42 @@
-import { useReducer, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
-import { Select,  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue, } from './components/ui/select'
-import { initialState, todoCategoryOptions, todoReducer } from './helpers/newTodo';
-import { Input } from './components/ui/input';
-import { Button } from './components/ui/button';
+
 
 function App() {
-  const [state, dispatcher] = useReducer(todoReducer, initialState);
-
-  const handleChangeSelect = (value) => {
-    dispatcher({
-      type: "CHANGE_INPUT",
-      payload: { name: 'todoCategory', value }, // Hardcode the name or pass it from the component
-    });
-  };
-  const handleChange = (e) => {
-    dispatcher({
-      type: "CHANGE_INPUT",
-      payload: { name: e.target.name, value: e.target.value },
-    });
-  };
-  console.log(state)
-
-  return (
-    <>
-     <Input
-              type="text"
-              placeholder="Enter Category"
-              name="todoCategory"
-              id=""
-              value={state.todoCategory}
-              onChange={handleChange}
-              // defaultValue={state.todoCategory}
-            />
-            
-      <Select
-            name="todoCategory"
-            id=""
-            value={state.todoCategory}
-           onValueChange={handleChangeSelect}
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    return (
+      <div className=" bg-white h-screen w-screen flex flex-col items-center justify-center">
+        <button
+          onClick={() => {
+            setIsModalOpen(true);
+          }}
+          className="w-full max-w-xs font-bold hover:opacity-70 relative text-white bg-[#635fc7] py-2 rounded-full"
+        >
+          Open Modal
+        </button>
+        {isModalOpen &&
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md"
+          onClick={(e) => {
+            if (e.target !== e.currentTarget) {
+              return;
+            }
+            setIsModalOpen(false);
+          }}
           >
-            <SelectTrigger className="w-[280px]">
-              <SelectValue placeholder="Select a Category" />
-            </SelectTrigger>
-            <SelectContent>
-              {todoCategoryOptions.map((option) => (
-                <SelectItem key={option.value} value={option.value}>
-                  {option.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-    </>
-  )
-}
-
+          <div className="relative bg-white rounded-lg p-6">
+            <h3>Modal</h3>
+            <button
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+              onClick={(e)=> setIsModalOpen(false)}
+            >
+              &times;
+            </button>
+            
+          </div>
+        </div>
+          }
+      </div>
+    );
+  }
 export default App
-  // const handleChange = (newValue) => {
-  //   setValue(newValue);
-  // };
+ 
