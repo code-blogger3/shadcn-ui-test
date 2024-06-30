@@ -1,0 +1,4 @@
+{
+    "editor.inlineSuggest.suppressSuggestions": true,
+    "typescript.tsserver.web.projectWideIntellisense.suppressSemanticErrors": true
+}
