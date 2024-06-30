@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import './App.css'
 
-
 function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     return (
@@ -14,6 +13,7 @@ function App() {
         >
           Open Modal
         </button>
+   {/*<-------------------------- Modal ------------------------------> */}
         {isModalOpen &&
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md"
           onClick={(e) => {
@@ -23,7 +23,7 @@ function App() {
             setIsModalOpen(false);
           }}
           >
-          <div className="relative bg-white rounded-lg p-6">
+          <div className="max-w-sm relative bg-white rounded-lg p-6">
             <h3>Modal</h3>
             <button
               className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
@@ -31,7 +31,8 @@ function App() {
             >
               &times;
             </button>
-            
+            <h2 className="text-2xl mb-4">Modal Content</h2>
+        <p>This is a sample modal. Click the &times; to close it. Or Click anywhere outside of the modal </p>
           </div>
         </div>
           }
